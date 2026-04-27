@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nejuma V H · HR Professional</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --lav:     #c4b5e8;
+  --lav-d:   #9b87cc;
+  --lav-bg:  #f0ecfa;
+  --lav-mid: #ddd5f5;
+  --peach:   #f5c4a8;
+  --peach-d: #e8975f;
+  --peach-bg:#fdf0e8;
+  --mint:    #a8d8c8;
+  --mint-d:  #5fa88a;
+  --mint-bg: #e8f7f2;
+  --blush:   #f0b8c8;
+  --blush-d: #c87090;
+  --sky:     #b8d8f0;
+  --sky-d:   #5a90c0;
+  --bg:      #faf9fc;
+  --bg2:     #f4f2f8;
+  --white:   #ffffff;
+  --ink:     #2d2640;
+  --ink2:    #4a4260;
+  --ink3:    #7a7095;
+  --ink4:    #a09ab8;
+  --border:  rgba(180,165,220,0.2);
+  --border2: rgba(180,165,220,0.35);
+  --shadow-sm: 0 2px 12px rgba(100,80,160,0.06);
+  --shadow:    0 6px 30px rgba(100,80,160,0.1);
+  --shadow-lg: 0 16px 60px rgba(100,80,160,0.14);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  overflow-x: hidden;
+}
+
+/* ── Decorative BG circles ── */
+body::before, body::after {
+  content: '';
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+body::before {
+  width: 700px; height: 700px;
+  top: -200px; right: -200px;
+  background: radial-gradient(circle, rgba(196,181,232,0.18) 0%, transparent 70%);
+}
+body::after {
+  width: 600px; height: 600px;
+  bottom: -150px; left: -150px;
+  background: radial-gradient(circle, rgba(245,196,168,0.15) 0%, transparent 70%);
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--lav-bg); }
+::-webkit-scrollbar-thumb { background: var(--lav); border-radius: 99px; }
+
+/* ════════════════════ NAV ════════════════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  height: 68px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 clamp(20px, 5vw, 64px);
+  background: rgba(250,249,252,0.88);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border);
+  transition: box-shadow 0.3s;
+}
+nav.scrolled { box-shadow: var(--shadow-sm); }
+
+.nav-brand {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none;
+}
+.nav-monogram {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: linear-gradient(135deg, var(--lav-d), var(--peach-d));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 16px; color: #fff; font-weight: 700;
+  box-shadow: 0 3px 12px rgba(155,135,204,0.3);
+}
+.nav-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px; font-weight: 500; color: var(--ink);
+  letter-spacing: 0.01em;
+}
+
+.nav-links { display: flex; gap: 2px; list-style: none; align-items: center; }
+.nav-links a {
+  font-size: 13px; font-weight: 500; color: var(--ink3);
+  text-decoration: none; padding: 7px 15px; border-radius: 99px;
+  transition: all 0.2s; letter-spacing: 0.01em;
+}
+.nav-links a:hover { color: var(--ink); background: var(--lav-bg); }
+.nav-pill {
+  background: linear-gradient(135deg, var(--lav-d), var(--peach-d)) !important;
+  color: white !important; padding: 7px 20px !important;
+  box-shadow: 0 3px 14px rgba(155,135,204,0.35) !important;
+}
+.nav-pill:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(155,135,204,0.45) !important; }
+
+.hamburger { display:none; background:none; border:none; cursor:pointer; padding:8px; flex-direction:column; gap:5px; }
+.hamburger span { width:22px; height:2px; background:var(--ink3); border-radius:99px; display:block; transition:all 0.3s; }
+
+/* ════════════════════ HERO ════════════════════ */
+#hero {
+  position: relative; z-index: 10;
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 100px clamp(20px, 6vw, 80px) 60px;
+  max-width: 1200px; margin: 0 auto;
+  gap: 60px;
+}
+
+.hero-left { flex: 1; min-width: 0; }
+
+.hero-chips {
+  display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px;
+  animation: riseUp 0.6s ease both;
+}
+.hero-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 5px 14px; border-radius: 99px;
+  font-size: 12px; font-weight: 500; letter-spacing: 0.04em;
+}
+.chip-lav { background: var(--lav-bg); color: var(--lav-d); border: 1px solid rgba(155,135,204,0.25); }
+.chip-peach { background: var(--peach-bg); color: var(--peach-d); border: 1px solid rgba(232,151,95,0.25); }
+.chip-dot { width: 6px; height: 6px; border-radius: 50%; }
+.cdot-lav { background: var(--lav-d); animation: blink 2s infinite; }
+.cdot-peach { background: var(--peach-d); }
+@keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+
+.hero-h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 5vw, 72px); white-space: nowrap;
+  font-weight: 400; line-height: 1.08;
+  letter-spacing: -0.02em; color: var(--ink);
+  margin-bottom: 6px;
+  animation: riseUp 0.6s 0.08s ease both;
+}
+.hero-h1 em { font-style: italic; color: var(--lav-d); }
+
+.hero-sub-row {
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 24px;
+  animation: riseUp 0.6s 0.16s ease both;
+}
+.hero-sub-line { flex:1; height:1px; background: linear-gradient(90deg, var(--lav-mid), transparent); }
+.hero-role-text {
+  font-size: 13px; font-weight: 600; letter-spacing: 0.09em;
+  text-transform: uppercase; color: var(--ink4);
+}
+
+.hero-desc {
+  font-size: 16px; color: var(--ink3); line-height: 1.85;
+  max-width: 460px; margin-bottom: 36px; font-weight: 300;
+  animation: riseUp 0.6s 0.24s ease both;
+}
+
+.hero-btns {
+  display: flex; gap: 12px; flex-wrap: wrap;
+  animation: riseUp 0.6s 0.32s ease both;
+}
+
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 28px; border-radius: 14px;
+  font-size: 14px; font-weight: 600; text-decoration: none;
+  letter-spacing: 0.02em; transition: all 0.25s;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--lav-d), var(--peach-d));
+  color: white;
+  box-shadow: 0 6px 24px rgba(155,135,204,0.38);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(155,135,204,0.5); }
+.btn-ghost {
+  background: var(--white); color: var(--ink2);
+  border: 1.5px solid var(--border2);
+  box-shadow: var(--shadow-sm);
+}
+.btn-ghost:hover { transform: translateY(-2px); box-shadow: var(--shadow); border-color: var(--lav); }
+
+/* ── Hero right: card stack ── */
+.hero-right {
+  flex: 0 0 340px;
+  display: flex; flex-direction: column; gap: 16px;
+  animation: riseUp 0.7s 0.3s ease both;
+}
+
+.pcard {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 24px 28px;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.pcard:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+
+.pcard-main { animation: floatCard 8s ease-in-out infinite; }
+@keyframes floatCard { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-8px);} }
+
+.stats-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.stat-box {}
+.stat-n {
+  font-family: 'Playfair Display', serif;
+  font-size: 40px; font-weight: 700; line-height: 1;
+  color: var(--ink); letter-spacing: -1px;
+}
+.stat-n span { font-style: italic; color: var(--lav-d); }
+.stat-l { font-size: 11px; color: var(--ink4); font-weight: 500; margin-top: 4px; letter-spacing: 0.04em; }
+
+.pcard-divider { height: 1px; background: var(--border); margin: 16px 0; }
+
+.avail-row { display:flex; align-items:center; gap:10px; }
+.avail-dot { width:8px;height:8px;border-radius:50%;background:var(--mint-d);animation:blink 2s infinite; }
+.avail-text { font-size:13px; color:var(--ink3); font-weight:400; }
+
+.mini-card { padding: 16px 20px; display:flex; align-items:center; gap:14px; border-radius:18px; }
+.mc-icon { width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0; }
+.mc-lav { background:var(--lav-bg); }
+.mc-peach { background:var(--peach-bg); }
+.mc-label { font-size:11px;color:var(--ink4);font-weight:500;letter-spacing:0.04em;text-transform:uppercase; }
+.mc-val { font-size:13px;color:var(--ink2);font-weight:500;margin-top:2px; }
+
+/* ════════════════════ SHARED LAYOUT ════════════════════ */
+.wrap {
+  position: relative; z-index: 10;
+  max-width: 1200px; margin: 0 auto;
+  padding: clamp(70px,8vw,110px) clamp(20px,6vw,80px);
+}
+
+.sec-eye {
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--lav-d); margin-bottom:10px;
+}
+.sec-eye::before {
+  content:'';width:20px;height:2px;border-radius:99px;
+  background:linear-gradient(90deg,var(--lav-d),var(--peach-d));
+}
+.sec-h {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(34px,4vw,52px);font-weight:400;line-height:1.1;
+  color:var(--ink);letter-spacing:-0.02em;
+}
+.sec-h em { font-style:italic;color:var(--lav-d); }
+.sec-sub { font-size:15px;color:var(--ink3);line-height:1.8;max-width:500px;margin-top:10px;font-weight:300; }
+
+.hr-sep {
+  border:none;border-top:1px solid var(--border);
+  max-width:1200px;margin:0 auto;
+  position:relative;z-index:10;
+  margin-left:clamp(20px,6vw,80px);margin-right:clamp(20px,6vw,80px);
+}
+
+/* ════════════════════ SKILLS ════════════════════ */
+.skills-2col { display:grid;grid-template-columns:1fr 1fr;gap:56px; }
+
+.skill-rows { display:flex;flex-direction:column;gap:22px; }
+.sk-row {}
+.sk-top { display:flex;justify-content:space-between;margin-bottom:8px; }
+.sk-name { font-size:14px;font-weight:500;color:var(--ink2); }
+.sk-pct {
+  font-family:'Playfair Display',serif;font-style:italic;
+  font-size:17px;color:var(--lav-d);
+}
+.sk-track { height:6px;background:var(--bg2);border-radius:99px;overflow:hidden; }
+.sk-fill { height:100%;border-radius:99px;width:0;transition:width 1.4s cubic-bezier(0.22,1,0.36,1); }
+.f-lav   { background:linear-gradient(90deg,var(--lav-d),var(--lav)); }
+.f-peach { background:linear-gradient(90deg,var(--peach-d),var(--peach)); }
+.f-mint  { background:linear-gradient(90deg,var(--mint-d),var(--mint)); }
+.f-blush { background:linear-gradient(90deg,var(--blush-d),var(--blush)); }
+.f-sky   { background:linear-gradient(90deg,var(--sky-d),var(--sky)); }
+
+.chip-clusters { display:flex;flex-direction:column;gap:24px; }
+.cluster-title { font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink4);font-weight:600;margin-bottom:10px; }
+.cluster-chips { display:flex;flex-wrap:wrap;gap:8px; }
+.tag {
+  display:inline-flex;align-items:center;gap:5px;
+  padding:6px 13px;border-radius:99px;font-size:12px;font-weight:500;
+  transition:all 0.2s;cursor:default;
+}
+.tag:hover { transform:translateY(-1px);box-shadow:var(--shadow-sm); }
+.tag-lav   { background:var(--lav-bg);color:var(--lav-d);border:1px solid rgba(155,135,204,0.2); }
+.tag-peach { background:var(--peach-bg);color:var(--peach-d);border:1px solid rgba(232,151,95,0.2); }
+.tag-mint  { background:var(--mint-bg);color:var(--mint-d);border:1px solid rgba(95,168,138,0.2); }
+.tag-blush { background:rgba(240,184,200,0.15);color:var(--blush-d);border:1px solid rgba(200,112,144,0.2); }
+
+/* ════════════════════ EXPERIENCE ════════════════════ */
+.exp-list { display:flex;flex-direction:column;gap:20px; }
+.exp-card {
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:22px;padding:32px 36px;
+  box-shadow:var(--shadow-sm);
+  display:grid;grid-template-columns:220px 1fr;gap:32px;
+  opacity:0;transform:translateY(18px);
+  transition:opacity 0.55s ease,transform 0.55s ease,box-shadow 0.3s;
+}
+.exp-card.revealed { opacity:1;transform:translateY(0); }
+.exp-card:hover { box-shadow:var(--shadow-lg);transform:translateY(-2px); }
+
+.exp-left {}
+.exp-period {
+  display:inline-block;
+  font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;
+  padding:4px 12px;border-radius:99px;
+  background:var(--lav-bg);color:var(--lav-d);
+  border:1px solid rgba(155,135,204,0.2);
+  margin-bottom:12px;
+}
+.exp-co {
+  font-family:'Playfair Display',serif;
+  font-size:17px;font-weight:500;color:var(--ink);font-style:italic;
+  margin-bottom:4px;line-height:1.3;
+}
+.exp-loc { font-size:12px;color:var(--ink4);font-weight:400; }
+
+.exp-right {}
+.exp-role {
+  font-family:'Playfair Display',serif;
+  font-size:22px;font-weight:700;color:var(--ink);
+  margin-bottom:14px;letter-spacing:-0.01em;
+}
+.exp-dots { display:flex;flex-direction:column;gap:8px; }
+.exp-dot-row { display:flex;gap:10px;align-items:flex-start; }
+.exp-bullet {
+  width:6px;height:6px;border-radius:50%;
+  background:var(--lav);margin-top:6px;flex-shrink:0;
+}
+.exp-dot-text { font-size:14px;color:var(--ink3);line-height:1.7;font-weight:300; }
+
+/* ════════════════════ ACHIEVEMENTS ════════════════════ */
+.ach-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px; }
+.ach-card {
+  background:var(--white);border:1px solid var(--border);
+  border-radius:20px;padding:26px 28px;
+  box-shadow:var(--shadow-sm);
+  opacity:0;transform:translateY(14px);
+  transition:opacity 0.5s ease,transform 0.5s ease,box-shadow 0.25s;
+  position:relative;overflow:hidden;
+}
+.ach-card::before {
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  border-radius:99px 99px 0 0;
+}
+.ach-card.lav::before   { background:linear-gradient(90deg,var(--lav-d),var(--lav)); }
+.ach-card.peach::before { background:linear-gradient(90deg,var(--peach-d),var(--peach)); }
+.ach-card.mint::before  { background:linear-gradient(90deg,var(--mint-d),var(--mint)); }
+.ach-card.blush::before { background:linear-gradient(90deg,var(--blush-d),var(--blush)); }
+.ach-card.sky::before   { background:linear-gradient(90deg,var(--sky-d),var(--sky)); }
+.ach-card:hover { transform:translateY(-3px);box-shadow:var(--shadow-lg); }
+.ach-card.revealed { opacity:1;transform:translateY(0); }
+
+.ach-icon { font-size:28px;margin-bottom:14px;display:block; }
+.ach-title { font-family:'Playfair Display',serif;font-size:18px;font-weight:500;color:var(--ink);margin-bottom:8px; }
+.ach-desc { font-size:13px;color:var(--ink3);line-height:1.75;margin-bottom:16px;font-weight:300; }
+.ach-tags { display:flex;flex-wrap:wrap;gap:6px; }
+.ach-tag { font-size:11px;font-weight:500;padding:3px 10px;border-radius:99px; }
+.ach-tag.lav   { background:var(--lav-bg);color:var(--lav-d); }
+.ach-tag.peach { background:var(--peach-bg);color:var(--peach-d); }
+.ach-tag.mint  { background:var(--mint-bg);color:var(--mint-d); }
+
+/* ════════════════════ EDUCATION ════════════════════ */
+.edu-flex { display:flex;flex-direction:column;gap:16px;margin-bottom:40px; }
+.edu-card {
+  background:var(--white);border:1px solid var(--border);
+  border-radius:18px;padding:22px 28px;
+  box-shadow:var(--shadow-sm);
+  display:flex;align-items:center;gap:20px;
+  opacity:0;transform:translateX(-16px);
+  transition:opacity 0.5s ease,transform 0.5s ease,box-shadow 0.25s;
+}
+.edu-card.revealed { opacity:1;transform:translateX(0); }
+.edu-card:hover { box-shadow:var(--shadow);transform:translateY(-2px); }
+.edu-icon {
+  width:48px;height:48px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;font-size:22px;
+  flex-shrink:0;
+}
+.edu-icon.lav   { background:var(--lav-bg); }
+.edu-icon.peach { background:var(--peach-bg); }
+.edu-info {}
+.edu-badge {
+  display:inline-block;font-size:10px;font-weight:600;letter-spacing:0.06em;
+  text-transform:uppercase;padding:2px 8px;border-radius:99px;margin-bottom:5px;
+}
+.badge-lav   { background:var(--lav-bg);color:var(--lav-d); }
+.badge-peach { background:var(--peach-bg);color:var(--peach-d); }
+.edu-degree { font-family:'Playfair Display',serif;font-size:17px;font-weight:500;color:var(--ink);margin-bottom:3px; }
+.edu-school { font-size:13px;color:var(--lav-d);font-weight:500;margin-bottom:2px; }
+.edu-yr { font-size:12px;color:var(--ink4); }
+
+.cert-row { display:flex;flex-wrap:wrap;gap:14px; }
+.cert-pill {
+  display:inline-flex;align-items:center;gap:12px;
+  background:var(--white);border:1px solid var(--border);
+  border-radius:16px;padding:16px 22px;box-shadow:var(--shadow-sm);
+  transition:all 0.25s;
+}
+.cert-pill:hover { transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--lav); }
+.cert-pill-icon { font-size:22px; }
+.cert-pill-name { font-size:14px;font-weight:600;color:var(--ink); }
+.cert-pill-body { font-size:12px;color:var(--ink4);margin-top:2px; }
+
+/* ════════════════════ CONTACT ════════════════════ */
+.contact-hero { text-align:center;margin-bottom:52px; }
+.contact-avatar-wrap { position:relative;width:88px;height:88px;margin:0 auto 24px; }
+.contact-avatar {
+  width:88px;height:88px;border-radius:50%;
+  background:linear-gradient(135deg,var(--lav-d),var(--peach-d));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-size:30px;font-weight:700;
+  color:white;letter-spacing:-1px;
+  box-shadow:0 8px 28px rgba(155,135,204,0.35);
+}
+.contact-ring {
+  position:absolute;inset:-8px;border-radius:50%;
+  border:1.5px solid rgba(155,135,204,0.25);
+  animation:ringPulse 3s ease-in-out infinite;
+}
+.contact-ring:nth-child(3) { inset:-16px;border-color:rgba(232,151,95,0.15);animation-delay:-1.5s; }
+@keyframes ringPulse { 0%,100%{transform:scale(1);opacity:0.7;} 50%{transform:scale(1.05);opacity:1;} }
+
+.contact-tagline {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(26px,3.5vw,40px);font-weight:400;font-style:italic;
+  color:var(--ink);margin-bottom:10px;
+}
+.contact-sub { font-size:15px;color:var(--ink3);font-weight:300; }
+
+.contact-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;max-width:960px;margin:0 auto; }
+.cc {
+  background:var(--white);border:1px solid var(--border);
+  border-radius:18px;padding:22px 18px;text-align:center;
+  text-decoration:none;box-shadow:var(--shadow-sm);
+  transition:all 0.25s;
+}
+.cc:hover { transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:var(--lav); }
+.cc-ico { font-size:24px;margin-bottom:10px;display:block; }
+.cc-lbl { font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink4);font-weight:600;margin-bottom:5px; }
+.cc-v { font-size:13px;color:var(--ink2);font-weight:500;word-break:break-all; }
+
+/* ════════════════════ FOOTER ════════════════════ */
+footer {
+  position:relative;z-index:10;
+  border-top:1px solid var(--border);
+  padding:28px clamp(20px,6vw,80px);
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;
+}
+.footer-brand {
+  font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:var(--ink3);
+}
+.footer-copy { font-size:12px;color:var(--ink4);font-weight:300; }
+
+/* ════════════════════ ANIMATIONS ════════════════════ */
+@keyframes riseUp { from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);} }
+
+/* ════════════════════ RESPONSIVE ════════════════════ */
+@media(max-width:900px) {
+  .exp-card { grid-template-columns:1fr; gap:12px; }
+}
+@media(max-width:768px) {
+  .nav-links { display:none; }
+  .nav-links.open {
+    display:flex;flex-direction:column;
+    position:absolute;top:68px;left:0;right:0;
+    background:rgba(250,249,252,0.97);backdrop-filter:blur(20px);
+    padding:16px 24px;border-bottom:1px solid var(--border);gap:4px;
+  }
+  .hamburger { display:flex; }
+  #hero { flex-direction:column;padding-top:90px; }
+  .hero-right { display:none; }
+  .skills-2col { grid-template-columns:1fr;gap:32px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#hero" class="nav-brand">
+    <div class="nav-monogram">N</div>
+    <span class="nav-name">Nejuma V H</span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#achievements">Impact</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact" class="nav-pill">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="burger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ════ HERO ════ -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-chips">
+      <span class="hero-chip chip-lav"><span class="chip-dot cdot-lav"></span>Available Now</span>
+      <span class="hero-chip chip-peach"><span class="chip-dot cdot-peach"></span>Kochi, Kerala</span>
+    </div>
+
+    <h1 class="hero-h1">Nejuma <em>V H</em></h1>
+
+    <div class="hero-sub-row">
+      <span class="hero-role-text">HR Generalist &amp; Executive</span>
+      <div class="hero-sub-line"></div>
+    </div>
+
+    <p class="hero-desc">Six years of shaping people-first workplaces — end-to-end recruitment, payroll, statutory compliance, and performance management across healthcare, ed-tech, and IT staffing.</p>
+
+    <div class="hero-btns">
+      <a href="#experience" class="btn btn-primary">View Experience →</a>
+      <a href="#contact" class="btn btn-ghost">Let's Connect ✉</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="pcard pcard-main">
+      <div class="stats-row">
+        <div class="stat-box">
+          <div class="stat-n">6<span>+</span></div>
+          <div class="stat-l">Years of experience</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-n">200<span>+</span></div>
+          <div class="stat-l">Employees onboarded</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-n">20<span>+</span></div>
+          <div class="stat-l">Monthly placements</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-n">3</div>
+          <div class="stat-l">Industry sectors</div>
+        </div>
+      </div>
+      <div class="pcard-divider"></div>
+      <div class="avail-row">
+        <span class="avail-dot"></span>
+        <span class="avail-text">Currently · Zeha Business Solutions, Kakkanad</span>
+      </div>
+    </div>
+
+    <div class="pcard mini-card">
+      <div class="mc-icon mc-lav">✉️</div>
+      <div>
+        <div class="mc-label">Email</div>
+        <div class="mc-val">vhnejuma@gmail.com</div>
+      </div>
+    </div>
+
+    <div class="pcard mini-card">
+      <div class="mc-icon mc-peach">💼</div>
+      <div>
+        <div class="mc-label">LinkedIn</div>
+        <div class="mc-val">nejuma-v-h</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="hr-sep">
+
+<!-- ════ SKILLS ════ -->
+<div class="wrap" id="skills">
+  <div style="margin-bottom:48px;">
+    <div class="sec-eye">Capabilities</div>
+    <h2 class="sec-h">Skills &amp; <em>Expertise</em></h2>
+    <p class="sec-sub">A rare blend of HR strategy, compliance fluency, and technical know-how — shaped by 6+ years across three demanding industries.</p>
+  </div>
+
+  <div class="skills-2col">
+    <div class="skill-rows" id="skillGrid">
+      <div class="sk-row">
+        <div class="sk-top"><span class="sk-name">Recruitment &amp; Talent Acquisition</span><span class="sk-pct">95</span></div>
+        <div class="sk-track"><div class="sk-fill f-lav" data-w="95"></div></div>
+      </div>
+      <div class="sk-row">
+        <div class="sk-top"><span class="sk-name">Payroll &amp; Attendance Management</span><span class="sk-pct">90</span></div>
+        <div class="sk-track"><div class="sk-fill f-peach" data-w="90"></div></div>
+      </div>
+      <div class="sk-row">
+        <div class="sk-top"><span class="sk-name">HR Policy &amp; Statutory Compliance</span><span class="sk-pct">88</span></div>
+        <div class="sk-track"><div class="sk-fill f-mint" data-w="88"></div></div>
+      </div>
+      <div class="sk-row">
+        <div class="sk-top"><span class="sk-name">Performance Evaluation (KRA/KPI)</span><span class="sk-pct">85</span></div>
+        <div class="sk-track"><div class="sk-fill f-blush" data-w="85"></div></div>
+      </div>
+      <div class="sk-row">
+        <div class="sk-top"><span class="sk-name">HRMS &amp; Advanced Excel</span><span class="sk-pct">87</span></div>
+        <div class="sk-track"><div class="sk-fill f-sky" data-w="87"></div></div>
+      </div>
+      <div class="sk-row">
+        <div class="sk-top"><span class="sk-name">Training &amp; Development</span><span class="sk-pct">82</span></div>
+        <div class="sk-track"><div class="sk-fill f-lav" data-w="82"></div></div>
+      </div>
+    </div>
+
+    <div class="chip-clusters">
+      <div>
+        <div class="cluster-title">Compliance &amp; Legal</div>
+        <div class="cluster-chips">
+          <span class="tag tag-lav">PF &amp; ESI</span>
+          <span class="tag tag-lav">PT &amp; LWF</span>
+          <span class="tag tag-lav">WPS</span>
+          <span class="tag tag-lav">Labor Law</span>
+          <span class="tag tag-lav">MIS Reporting</span>
+        </div>
+      </div>
+      <div>
+        <div class="cluster-title">Tools &amp; Technology</div>
+        <div class="cluster-chips">
+          <span class="tag tag-peach">HRMS Tools</span>
+          <span class="tag tag-peach">Advanced Excel</span>
+          <span class="tag tag-peach">Python / Web</span>
+          <span class="tag tag-peach">AI Data Visualisation</span>
+        </div>
+      </div>
+      <div>
+        <div class="cluster-title">People Operations</div>
+        <div class="cluster-chips">
+          <span class="tag tag-mint">Employee Engagement</span>
+          <span class="tag tag-mint">Bulk Hiring</span>
+          <span class="tag tag-mint">UAE Client Coordination</span>
+          <span class="tag tag-mint">Grievance Handling</span>
+          <span class="tag tag-mint">Onboarding</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="hr-sep">
+
+<!-- ════ EXPERIENCE ════ -->
+<div class="wrap" id="experience">
+  <div style="margin-bottom:48px;">
+    <div class="sec-eye">Work History</div>
+    <h2 class="sec-h">Professional <em>Experience</em></h2>
+    <p class="sec-sub">Six years across healthcare, education, and IT staffing — growing from HR support into independently managing full-cycle operations.</p>
+  </div>
+
+  <div class="exp-list">
+
+    <div class="exp-card">
+      <div class="exp-left">
+        <div class="exp-period">Jan 2026 – Present</div>
+        <div class="exp-co">Zeha Business Solutions Pvt Ltd</div>
+        <div class="exp-loc">📍 Kakkanad, Kochi</div>
+      </div>
+      <div class="exp-right">
+        <div class="exp-role">HR Associate</div>
+        <div class="exp-dots">
+          <div class="exp-dot-row"><span class="exp-bullet"></span><span class="exp-dot-text">End-to-end recruitment placing 20+ employees in IT &amp; Non-IT roles monthly</span></div>
+          <div class="exp-dot-row"><span class="exp-bullet"></span><span class="exp-dot-text">Direct client coordination with Indian and UAE-based companies on staffing</span></div>
+          <div class="exp-dot-row"><span class="exp-bullet"></span><span class="exp-dot-text">Payroll processing, full &amp; final settlements, and employee records management</span></div>
+          <div class="exp-dot-row"><span class="exp-bullet"></span><span class="exp-dot-text">Maintained full statutory compliance: PF, PT, WPS, LWS, and ESI</span></div>
+          <div class="exp-dot-row"><span class="exp-bullet"></span><span class="exp-dot-text">Designed and implemented KRA/KPI frameworks for performance evaluation</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-left">
+        <div class="exp-period" style="background:var(--peach-bg);color:var(--peach-d);border-color:rgba(232,151,95,0.2)">Jun 2021 – Dec 2025</div>
+        <div class="exp-co">Athena Erudition</div>
+        <div class="exp-loc">📍 Palarivattom, Kochi</div>
+      </div>
+      <div class="exp-right">
+        <div class="exp-role">HR Assistant</div>
+        <div class="exp-dots">
+          <div class="exp-dot-row"><span class="exp-bullet" style="background:var(--peach)"></span><span class="exp-dot-text">Managed end-to-end recruitment, sourcing &amp; onboarding of 10+ employees per cycle</span></div>
+          <div class="exp-dot-row"><span class="exp-bullet" style="background:var(--peach)"></span><span class="exp-dot-text">Maintained employee records, payroll, and attendance using HRMS tools</span></div>
+          <div class="exp-dot-row"><span class="exp-bullet" style="background:var(--peach)"></span><span class="exp-dot-text">Coordinated HR documentation, offer letters, and exit formalities</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-left">
+        <div class="exp-period" style="background:var(--mint-bg);color:var(--mint-d);border-color:rgba(95,168,138,0.2)">Oct 2018 – Apr 2021</div>
+        <div class="exp-co">Highrange Super Speciality Hospital</div>
+        <div class="exp-loc">📍 Kattappana</div>
+      </div>
+      <div class="exp-right">
+        <div class="exp-role">HR Assistant</div>
+        <div class="exp-dots">
+          <div class="exp-dot-row"><span class="exp-bullet" style="background:var(--mint)"></span><span class="exp-dot-text">Orchestrated bulk recruitment and onboarding of 200+ employees across specialties</span></div>
+          <div class="exp-dot-row"><span class="exp-bullet" style="background:var(--mint)"></span><span class="exp-dot-text">Supported new-hire orientation programs and structured training processes</span></div>
+          <div class="exp-dot-row"><span class="exp-bullet" style="background:var(--mint)"></span><span class="exp-dot-text">Processed payroll, attendance tracking, and leave management</span></div>
+          <div class="exp-dot-row"><span class="exp-bullet" style="background:var(--mint)"></span><span class="exp-dot-text">Managed employee grievance resolution and HR administrative functions</span></div>
+          <div class="exp-dot-row"><span class="exp-bullet" style="background:var(--mint)"></span><span class="exp-dot-text">Maintained statutory compliance and conducted periodic evaluations</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-left">
+        <div class="exp-period" style="background:rgba(176,196,222,0.18);color:var(--sky-d);border-color:rgba(90,144,192,0.2)">Aug 2017 – Aug 2018</div>
+        <div class="exp-co">PGM College, Kangazha</div>
+        <div class="exp-loc">📍 Kottayam</div>
+      </div>
+      <div class="exp-right">
+        <div class="exp-role">Assistant Professor</div>
+        <div class="exp-dots">
+          <div class="exp-dot-row"><span class="exp-bullet" style="background:var(--sky)"></span><span class="exp-dot-text">Delivered academic instruction in Computer Science &amp; Engineering</span></div>
+          <div class="exp-dot-row"><span class="exp-bullet" style="background:var(--sky)"></span><span class="exp-dot-text">Mentored students, cultivating communication and people skills foundational to HR</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<hr class="hr-sep">
+
+<!-- ════ ACHIEVEMENTS ════ -->
+<div class="wrap" id="achievements">
+  <div style="margin-bottom:48px;">
+    <div class="sec-eye">Impact</div>
+    <h2 class="sec-h">Key <em>Achievements</em></h2>
+    <p class="sec-sub">Tangible outcomes delivered across HR functions — from talent pipelines to compliance and AI-augmented workflows.</p>
+  </div>
+
+  <div class="ach-grid">
+    <div class="ach-card lav">
+      <span class="ach-icon">🏥</span>
+      <div class="ach-title">Healthcare Mega-Hire</div>
+      <p class="ach-desc">Orchestrated bulk recruitment and onboarding of 200+ staff at Highrange Hospital across multiple specialties within tight timelines.</p>
+      <div class="ach-tags">
+        <span class="ach-tag lav">Bulk Recruitment</span>
+        <span class="ach-tag mint">Onboarding</span>
+      </div>
+    </div>
+    <div class="ach-card peach">
+      <span class="ach-icon">🌐</span>
+      <div class="ach-title">UAE–India Staffing Ops</div>
+      <p class="ach-desc">Managed cross-border staffing for Indian and UAE clients — placing 20+ candidates monthly with full WPS compliance.</p>
+      <div class="ach-tags">
+        <span class="ach-tag peach">Cross-border HR</span>
+        <span class="ach-tag lav">WPS Compliance</span>
+      </div>
+    </div>
+    <div class="ach-card mint">
+      <span class="ach-icon">📊</span>
+      <div class="ach-title">KRA/KPI Framework</div>
+      <p class="ach-desc">Built structured performance evaluation frameworks from scratch — standardising appraisal cycles and improving accountability.</p>
+      <div class="ach-tags">
+        <span class="ach-tag mint">Performance Mgmt</span>
+        <span class="ach-tag lav">Analytics</span>
+      </div>
+    </div>
+    <div class="ach-card lav">
+      <span class="ach-icon">🤖</span>
+      <div class="ach-title">AI-Augmented HR</div>
+      <p class="ach-desc">Applied Generative AI for HR data visualisation, JD creation, and candidate screening. HRCI® certified in AI-driven HR transformation.</p>
+      <div class="ach-tags">
+        <span class="ach-tag lav">Gen AI</span>
+        <span class="ach-tag peach">HRCI® Certified</span>
+      </div>
+    </div>
+    <div class="ach-card peach">
+      <span class="ach-icon">⚖️</span>
+      <div class="ach-title">Zero-Gap Compliance</div>
+      <p class="ach-desc">Established end-to-end statutory compliance covering PF, ESI, PT, LWF, and WPS — zero compliance gaps through all audits.</p>
+      <div class="ach-tags">
+        <span class="ach-tag peach">PF / ESI</span>
+        <span class="ach-tag mint">Audit-Ready</span>
+      </div>
+    </div>
+    <div class="ach-card mint">
+      <span class="ach-icon">🎓</span>
+      <div class="ach-title">Ed-Tech HR Infrastructure</div>
+      <p class="ach-desc">Built HR documentation, onboarding, and exit frameworks for a growing ed-tech firm over 4+ years of consistent team scaling.</p>
+      <div class="ach-tags">
+        <span class="ach-tag mint">Ed-Tech</span>
+        <span class="ach-tag lav">Documentation</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="hr-sep">
+
+<!-- ════ EDUCATION ════ -->
+<div class="wrap" id="education">
+  <div style="margin-bottom:40px;">
+    <div class="sec-eye">Qualifications</div>
+    <h2 class="sec-h">Education &amp; <em>Certifications</em></h2>
+    <p class="sec-sub">A distinctive mix of Computer Science engineering and HR management — enabling technical fluency alongside deep people expertise.</p>
+  </div>
+
+  <div class="edu-flex">
+    <div class="edu-card">
+      <div class="edu-icon lav">🎓</div>
+      <div class="edu-info">
+        <span class="edu-badge badge-lav">Postgraduate</span>
+        <div class="edu-degree">MBA in HR Management</div>
+        <div class="edu-school">IGNOU, New Delhi</div>
+        <div class="edu-yr">January 2024 – January 2026</div>
+      </div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-icon peach">💻</div>
+      <div class="edu-info">
+        <span class="edu-badge badge-peach">Undergraduate</span>
+        <div class="edu-degree">B.Tech — Computer Science &amp; Engineering</div>
+        <div class="edu-school">MG University, Kottayam</div>
+        <div class="edu-yr">2013 – 2017</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:500;color:var(--ink);margin-bottom:20px;">Professional Certifications</div>
+  <div class="cert-row">
+    <div class="cert-pill">
+      <span class="cert-pill-icon">🏅</span>
+      <div>
+        <div class="cert-pill-name">HR Generalist</div>
+        <div class="cert-pill-body">VSKills · Govt. of India</div>
+      </div>
+    </div>
+    <div class="cert-pill">
+      <span class="cert-pill-icon">🤖</span>
+      <div>
+        <div class="cert-pill-name">Generative AI in HR</div>
+        <div class="cert-pill-body">HRCI® · Issued August 2025</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="hr-sep">
+
+<!-- ════ CONTACT ════ -->
+<div class="wrap" id="contact">
+  <div class="contact-hero">
+    <div class="contact-avatar-wrap">
+      <div class="contact-ring"></div>
+      <div class="contact-ring"></div>
+      <div class="contact-avatar">NVH</div>
+    </div>
+    <div class="contact-tagline">"Let's build great teams together."</div>
+    <p class="contact-sub">Open to HR opportunities in Kochi and beyond — reach out, I'd love to connect.</p>
+  </div>
+
+  <div class="contact-grid">
+    <a href="mailto:vhnejuma@gmail.com" class="cc">
+      <span class="cc-ico">✉️</span>
+      <div class="cc-lbl">Email</div>
+      <div class="cc-v">vhnejuma@gmail.com</div>
+    </a>
+    <a href="tel:+918281665910" class="cc">
+      <span class="cc-ico">📞</span>
+      <div class="cc-lbl">Phone</div>
+      <div class="cc-v">+91 82816 65910</div>
+    </a>
+    <a href="https://www.linkedin.com/in/nejuma-v-h-39a966378" target="_blank" rel="noopener" class="cc">
+      <span class="cc-ico">💼</span>
+      <div class="cc-lbl">LinkedIn</div>
+      <div class="cc-v">nejuma-v-h</div>
+    </a>
+    <a href="https://nejumavh.github.io/portfolio/" target="_blank" rel="noopener" class="cc">
+      <span class="cc-ico">🌐</span>
+      <div class="cc-lbl">Portfolio</div>
+      <div class="cc-v">nejumavh.github.io/portfolio</div>
+    </a>
+    <div class="cc">
+      <span class="cc-ico">📍</span>
+      <div class="cc-lbl">Location</div>
+      <div class="cc-v">Kochi, Kerala — India</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ FOOTER ════ -->
+<footer>
+  <span class="footer-brand">Nejuma V H · HR Professional</span>
+  <span class="footer-copy">April 2026 · Kochi, Kerala</span>
+</footer>
+
+<script>
+// Nav scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20);
+});
+
+// Hamburger
+document.getElementById('burger').addEventListener('click', () => {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+document.querySelectorAll('#navLinks a').forEach(a =>
+  a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'))
+);
+
+// Skill bars
+const skillObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.sk-fill').forEach(b => b.style.width = b.dataset.w + '%');
+      skillObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.25 });
+skillObs.observe(document.getElementById('skillGrid'));
+
+// Reveal cards
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('revealed'); revealObs.unobserve(e.target); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.exp-card, .ach-card, .edu-card').forEach((el, i) => {
+  el.style.transitionDelay = (i % 3 * 80) + 'ms';
+  revealObs.observe(el);
+});
+</script>
+</body>
+</html>
